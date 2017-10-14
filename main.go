@@ -36,7 +36,16 @@ func readData() {
 			fmt.Println(err)
 			continue
 		}
-		err = t.Execute(os.Stdout, dictResult)
+
+		templateContext := struct {
+			YandexResults     []string
+			DictionaryResults *api.DictionaryResult
+		}{
+			yResp.Text,
+			dictResult,
+		}
+
+		err = t.Execute(os.Stdout, templateContext)
 		if err != nil {
 			fmt.Println(err)
 			continue
