@@ -9,14 +9,14 @@ const YandexBase = "https://translate.yandex.net/api/v1.5/tr.json/translate"
 const YandexAPIKey = "trnsl.1.1.20171014T132434Z.7fdcc037a26b0a8a.6b0fa46fc14f40d5e97fa08b780f52f637c5aa85"
 
 type YandexResponse struct {
-	Code string   `json:"code"`
+	Code int      `json:"code"`
 	Lang string   `json:"lang"`
 	Text []string `json:"text"`
 }
 
 // CreateYandexTranslateRequest new req
 func CreateYandexTranslateRequest(word string) (*http.Request, error) {
-	req, err := http.NewRequest("GET", Base, nil)
+	req, err := http.NewRequest("GET", YandexBase, nil)
 	if err != nil {
 		return nil, err
 	}
