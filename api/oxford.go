@@ -26,6 +26,7 @@ type Example struct {
 type Sense struct {
 	ID          string    `json:"id"`
 	Definitions []string  `json:"definitions"`
+	Domains     []string  `json:"domains"`
 	Examples    []Example `json:"examples"`
 	Subsenses   []Sense   `json:"subsenses"`
 }

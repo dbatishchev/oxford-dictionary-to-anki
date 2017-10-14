@@ -1,12 +1,22 @@
 {{range .LexicalEntries}}
     {{range .Entries}}
         {{range .Senses}}
-            {{range .Definitions}}
-                {{.}}
-            {{end}}
-            {{range .Examples}}
-                {{.Text}}
-            {{end}}
+            <p>
+                {{if not .Domains}}
+                    [{{range .Domains}}{{.}}{{end}}]
+                {{end}}
+                {{range .Definitions}}{{.}}<br>{{end}}
+                {{range .Examples}}<i>{{.Text}}</i><br>{{end}}
+                {{range .Subsenses}}
+                    <p>
+                        {{if not .Domains}}
+                            [{{range .Domains}}{{.}}{{end}}]
+                        {{end}}
+                        {{range .Definitions}}{{.}}<br>{{end}}
+                        {{range .Examples}}<i>{{.Text}}</i>{{end}}
+                    </p>
+                {{end}}
+            </p>
         {{end}}
     {{end}}
 {{end}}
