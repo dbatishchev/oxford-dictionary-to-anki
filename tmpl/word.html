@@ -1,0 +1,12 @@
+{{range .LexicalEntries}}
+    {{range .Entries}}
+        {{range .Senses}}
+            {{range .Definitions}}
+                {{.}}
+            {{end}}
+            {{range .Examples}}
+                {{.Text}}
+            {{end}}
+        {{end}}
+    {{end}}
+{{end}}

@@ -142,6 +142,9 @@ func GetDictionaryResponse(wordID string) (*DictionaryResponse, error) {
 	if err != nil {
 		return nil, err
 	}
+	if len(dictResp.Results) == 0 {
+		return nil, errors.New("No dictionary results returned from API")
+	}
 
 	return dictResp, nil
 }

@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"html/template"
 	"os"
 	"oxford/api"
 	"time"
@@ -33,8 +34,18 @@ func readData() {
 			continue
 		}
 
-		sense := dictResp.Results[0].LexicalEntries[0].Entries[0].Senses[0].Definitions[0]
-		fmt.Println(sense)
+		dictResult := dictResp.Results[0]
+
+		t, err := template.ParseFiles("./tmpl/word.html")
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
+		err = t.Execute(os.Stdout, dictResult)
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
 
 		time.Sleep(time.Second * 1)
 	}
