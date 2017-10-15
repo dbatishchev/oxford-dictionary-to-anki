@@ -59,7 +59,8 @@ func readData() {
 		m := minify.New()
 		m.AddFunc("text/html", html.Minify)
 		if err := m.Minify("text/html", os.Stdout, buf); err != nil {
-			panic(err)
+			fmt.Println(err)
+			continue
 		}
 	}
 }
