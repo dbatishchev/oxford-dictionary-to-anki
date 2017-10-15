@@ -2,11 +2,15 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"html/template"
 	"os"
 	"oxford/api"
 	"time"
+
+	"github.com/tdewolff/minify"
+	"github.com/tdewolff/minify/html"
 )
 
 func main() {
@@ -45,10 +49,17 @@ func readData() {
 			dictResult,
 		}
 
-		err = t.Execute(os.Stdout, templateContext)
+		buf := bytes.NewBufferString("")
+		err = t.Execute(buf, templateContext)
 		if err != nil {
 			fmt.Println(err)
 			continue
+		}
+
+		m := minify.New()
+		m.AddFunc("text/html", html.Minify)
+		if err := m.Minify("text/html", os.Stdout, buf); err != nil {
+			panic(err)
 		}
 	}
 }
