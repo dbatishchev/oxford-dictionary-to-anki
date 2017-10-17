@@ -62,6 +62,8 @@ func readData() {
 			fmt.Println(err)
 			continue
 		}
+
+		fmt.Printf("\n\n")
 	}
 }
 

@@ -1,1 +1,1 @@
-go run main.go < sample.dat
+go run main.go < sample.dat > output.txt
