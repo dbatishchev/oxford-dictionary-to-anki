@@ -21,6 +21,11 @@ func readData() {
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
 		word := scanner.Text()
+
+		if len(word) == 0 {
+			continue
+		}
+
 		fmt.Println(word)
 
 		yResp, err := getYandexResponse(word)
